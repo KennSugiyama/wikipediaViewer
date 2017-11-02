@@ -5,13 +5,13 @@ $('document').ready(function(){
     getArticle($('#searchField').val())
   })
 
+  $('#searchResults').on('mouseenter','.entry',function(){
+   $(this).addClass('spotlight')
+  })
 
-  $('#getRandomButton').on('click', (e) => getRandomArticle(e))
-
-
-  function getRandomArticle(e){
-    console.log('random time!', e)
-  }
+  $('#searchResults').on('mouseleave','.entry',function(){
+   $(this).removeClass('spotlight')
+  })
 
   function getArticle(searchTerm) {
     let endPoint = 'https://en.wikipedia.org/w/api.php?'
@@ -42,8 +42,8 @@ $('document').ready(function(){
       for(let i = 0; i < articles.length; i++){
         let html = `<div class="entry">
                       <a href=${articles[i].link} target='_blank'>
-                      <h2>${articles[i].title} </h2>
-                      <p> ${articles[i].description} </p></a>`
+                      <h2 id="entry-title">${articles[i].title} </h2>
+                      <p id="entry-description"> ${articles[i].description} </p></a>`
         $('#searchResults').append(html)
       }
     }

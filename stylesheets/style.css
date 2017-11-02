@@ -1,5 +1,10 @@
 html {
-  font-family: Cabin, Helvetica
+  font-family: Cabin, Helvetica;
+  background-color: gray;
+}
+
+h2 {
+  font-weight: bolder
 }
 
 div.container {
@@ -13,18 +18,26 @@ div.container {
 
 .entry {
   border: solid gray 0.5px;
-  border-left: solid orange 10px;
   background-color: #ECECEC;
   padding: 0 15px;
   margin: 5px 0;
 }
 
+.spotlight {
+  border-left: solid orange 20px;
+  position: relative;
+  top: 10px;
+  left: 8px;
+}
+
 .entry h2 {
   text-decoration: underline;
+  margin-bottom: 10px;
 }
 
 .entry p {
-  padding-left: 10px
+  padding-left: 10px;
+  margin-top: 0;
 }
 
 a {
