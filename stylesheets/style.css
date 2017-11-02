@@ -1,0 +1,55 @@
+html {
+  font-family: Cabin, Helvetica
+}
+
+div.container {
+  /*background-color: violet;*/
+  margin: 0 auto;
+  width: 90%;
+}
+
+#searchResults {
+  padding: 0 25px;
+  /*background-color: violet;*/
+}
+
+.entry {
+  border: solid gray 0.5px;
+  border-left: solid orange 10px;
+  background-color: #ECECEC;
+  padding: 0 15px;
+  margin: 5px 0;
+}
+
+.entry h2 {
+  text-decoration: underline;
+}
+
+.entry p {
+  padding-left: 10px
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+form {
+  /*background-color: pink;*/
+  padding: 10px 20px;
+}
+
+#searchField {
+  width: 300px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+#submitButton {
+  width: 120px;
+}
+
+#getRandomButton {
+  width: 183px;
+  display: inline;
+}

@@ -2,7 +2,7 @@ $('document').ready(function(){
 
   $('form').on('submit', (e) => {
     e.preventDefault();
-    getArticle($('#searchTerm').val())
+    getArticle($('#searchField').val())
   })
 
   function getArticle(searchTerm) {

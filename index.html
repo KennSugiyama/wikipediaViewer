@@ -6,18 +6,21 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="./stylesheets/normalize.css">
     <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="./stylesheets/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="./script.js"></script>
   </head>
   </head>
   <body>
-    <form id="search-form" style="margin: 20px 20px">
-      <input id="searchTerm" type="text">
-      <input type='submit'>
-    </form>
-    <div id="searchResults"></div>
+    <div class="container">
+      <form id="search-form" style="margin: 20px 20px">
+        <h1>Wikipedia Viewer</h1>
+        <input id="searchField" type="text" placeholder="Search Wikipedia" value="spam">
+        <input id="submitButton" type='submit'>
+        <button id="getRandomButton">Get Random Page</button>
+      </form>
+      <div id="searchResults"></div>
+    </div>
   </body>
 </html>
 
