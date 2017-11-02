@@ -1,34 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+  <style>
+    div {
+      margin: 30px;
+      background-color: #ccffcc;
+    }
+
+    div #entry {
+      background-color: #ff6666;
+    }
+  </style>
+
+
   <head>
-    <title>Wikipedia Viewer</title>
+    <title></title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./stylesheets/normalize.css">
-    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./stylesheets/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="./script.js"></script>
+    <!-- <script src="./script.js"></script> -->
   </head>
   <body>
-    <header>
-      <div class="container">
-        <div class="form-group">
-          <label for="WikipediaSearch">Search</label>
-          <input type="text" class="form-control" id="search-term">
-          <small id="searchHelp" class="form-text text-muted">What would you like to search for?</small>
-          <button type="submit" class="btn btn-primary">Search</button>
-        </div>
-        <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">Show me a random Wikipedia page</a>
-      </div>
-    </header>
-    <main>
-      <div class="container">
-        <h1>Results:</h1>
-        <div class="result" id="result1">
-          I am a result
-        </div>
-      </div>
-    </main>
+    <form action="" style="margin: 20px 20px">
+      <input type="text">
+      <button>submit</button>
+    </form>
+    <div id="outputArea"></div>
+
+
   </body>
+  <script>
+    $('document').ready(function(){
+      let endPoint = 'https://en.wikipedia.org/w/api.php?'
+      let apiCall = 'action=opensearch&format=json&namespace=0&limit=10&search='
+      let searchTerm = 'butterflies'
+
+      let url = endPoint + apiCall + searchTerm
+
+      let articles = null;
+      $.ajax({
+        url: url,
+        dataType: 'jsonp',
+        success: function(json){
+          parse(json)
+        }
+      });
+
+      function parse(json){
+        articles = [];
+        for (let i = 0; i < json[1].length; i++){
+          articles.push({
+            title: json[1][i],
+            description: json[2][i],
+            link: json[3][i]
+          })
+        };
+      console.log('got the data')
+      display(articles)
+      }
+
+
+      function display(data){
+        for(let i = 0; i < data.length; i++){
+          let html = `<div id=entry>
+                        <a href=${data[i].link} target='_blank'>
+                        <h2>${data[i].title} </h2>
+                        <p> ${data[i].description} </p></a>`
+          $('#outputArea').append(html)
+        }
+        //
+
+        console.log(data)
+      }
+
+
+// $('#outputArea').append("<div id='baby'><h1>hello</h1></div>")
+
+
+    })//document ready
+  </script>
 </html>
