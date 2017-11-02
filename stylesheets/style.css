@@ -3,14 +3,12 @@ html {
 }
 
 div.container {
-  /*background-color: violet;*/
   margin: 0 auto;
   width: 90%;
 }
 
 #searchResults {
   padding: 0 25px;
-  /*background-color: violet;*/
 }
 
 .entry {
@@ -35,7 +33,6 @@ a {
 }
 
 form {
-  /*background-color: pink;*/
   padding: 10px 20px;
 }
 
@@ -49,7 +46,14 @@ form {
   width: 120px;
 }
 
-#getRandomButton {
-  width: 183px;
-  display: inline;
+.button {
+  font-family: sans-serif;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
 }
