@@ -6,9 +6,25 @@
       background-color: #ccffcc;
     }
 
-    div #entry {
-      background-color: #ff6666;
+    div .entry {
+      background-color: gray;
+      color: black;
+
+      margin: 10px;
+      padding: 5px;
     }
+
+    a {
+      color: black;
+      text-decoration: none;
+    }
+
+    form {
+      background-color: pink;
+      padding: 10px 20px;
+    }
+
+
   </style>
 
 
@@ -16,64 +32,62 @@
     <title></title>
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <!-- <script src="./script.js"></script> -->
   </head>
   <body>
-    <form action="" style="margin: 20px 20px">
-      <input type="text">
-      <button>submit</button>
+    <form id="search-form" style="margin: 20px 20px">
+      <input id="searchTerm" type="text">
+      <input type='submit'>
     </form>
-    <div id="outputArea"></div>
-
-
+    <div id="searchResults"></div>
   </body>
+
+
   <script>
     $('document').ready(function(){
-      let endPoint = 'https://en.wikipedia.org/w/api.php?'
-      let apiCall = 'action=opensearch&format=json&namespace=0&limit=10&search='
-      let searchTerm = 'butterflies'
 
-      let url = endPoint + apiCall + searchTerm
+      $('form').on('submit', (e) => {
+        e.preventDefault();
+        getArticle($('#searchTerm').val())
+      })
 
-      let articles = null;
-      $.ajax({
-        url: url,
-        dataType: 'jsonp',
-        success: function(json){
-          parse(json)
+      function getArticle(searchTerm) {
+        let endPoint = 'https://en.wikipedia.org/w/api.php?'
+        let apiCall = 'action=opensearch&format=json&namespace=0&limit=10&search='
+        let url = endPoint + apiCall + searchTerm
+
+        $.ajax({
+          url: url,
+          dataType: 'jsonp',
+          success: function(json){
+            parse(json)
+          }
+        });
+
+        function parse(json){
+          var articles = [];
+          for (let i = 0; i < json[1].length; i++){
+            articles.push({
+              title: json[1][i],
+              description: json[2][i],
+              link: json[3][i]
+            })
+          };
+          console.log('got the data')
+          display(articles);
         }
-      });
 
-      function parse(json){
-        articles = [];
-        for (let i = 0; i < json[1].length; i++){
-          articles.push({
-            title: json[1][i],
-            description: json[2][i],
-            link: json[3][i]
-          })
-        };
-      console.log('got the data')
-      display(articles)
-      }
-
-
-      function display(data){
-        for(let i = 0; i < data.length; i++){
-          let html = `<div id=entry>
-                        <a href=${data[i].link} target='_blank'>
-                        <h2>${data[i].title} </h2>
-                        <p> ${data[i].description} </p></a>`
-          $('#outputArea').append(html)
+        function display(articles){
+          for(let i = 0; i < articles.length; i++){
+            let html = `<div class="entry">
+                          <a href=${articles[i].link} target='_blank'>
+                          <h2>${articles[i].title} </h2>
+                          <p> ${articles[i].description} </p></a>`
+                          console.log(html)
+            $('#searchResults').append(html)
+          }
+          console.log(articles)
         }
-        //
-
-        console.log(data)
       }
-
-
-// $('#outputArea').append("<div id='baby'><h1>hello</h1></div>")
-
 
     })//document ready
   </script>
