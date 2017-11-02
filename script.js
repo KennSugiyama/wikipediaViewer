@@ -1,9 +1,17 @@
 $('document').ready(function(){
 
-  $('form').on('submit', (e) => {
+  $('form').on('submit',(e) => {
     e.preventDefault();
     getArticle($('#searchField').val())
   })
+
+
+  $('#getRandomButton').on('click', (e) => getRandomArticle(e))
+
+
+  function getRandomArticle(e){
+    console.log('random time!', e)
+  }
 
   function getArticle(searchTerm) {
     let endPoint = 'https://en.wikipedia.org/w/api.php?'
